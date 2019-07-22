@@ -40,6 +40,14 @@ public class CourseController
         return new ResponseEntity<>(courseService.getCountStudentsInCourse(), HttpStatus.OK);
     }
 
+    @PostMapping(value = "/new/{instr}", consumes = {"application/json"})
+    public ResponseEntity<?> addNewCourse(@RequestBody Course course, @PathVariable long instr, HttpServletRequest req)
+    {
+        logger.info(req.getMethod().toUpperCase() + " \"" + req.getRequestURI() + "\" accessed.");
+        course = courseService.save(course, instr);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
     @DeleteMapping("/courses/{courseid}")
     public ResponseEntity<?> deleteCourseById(@PathVariable long courseid, HttpServletRequest req)
     {

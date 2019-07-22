@@ -2,7 +2,9 @@ package com.lambdaschool.school.service;
 
 import com.lambdaschool.school.exceptions.ResourceNotFoundException;
 import com.lambdaschool.school.model.Course;
+import com.lambdaschool.school.model.Instructor;
 import com.lambdaschool.school.repository.CourseRepository;
+import com.lambdaschool.school.repository.InstructorRepository;
 import com.lambdaschool.school.view.CountStudentsInCourses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,9 @@ public class CourseServiceImpl implements CourseService
     @Autowired
     private CourseRepository courserepos;
 
+    @Autowired
+    private InstructorRepository instructorrepos;
+
     @Override
     public ArrayList<Course> findAll()
     {
@@ -28,6 +33,17 @@ public class CourseServiceImpl implements CourseService
     public ArrayList<CountStudentsInCourses> getCountStudentsInCourse()
     {
         return courserepos.getCountStudentsInCourse();
+    }
+
+    @Transactional
+    @Override
+    public Course save(Course newCourse, long id) throws ResourceNotFoundException
+    {
+        Instructor courseInstr = instructorrepos.findById(id).orElseThrow(() -> new ResourceNotFoundException(Long.toString(id)));
+        Course rtnCourse = new Course();
+        rtnCourse.setCoursename(newCourse.getCoursename());
+        rtnCourse.setInstructor(courseInstr);
+        return courserepos.save(rtnCourse);
     }
 
     @Transactional
