@@ -35,4 +35,39 @@ public class InstructorServiceImpl implements InstructorService
         instructrepos.findInstructorsByInstructnameEquals(name).iterator().forEachRemaining(rtnInstructorList::add);
         return rtnInstructorList;
     }
+
+    @Override
+    public void delete(long id) throws ResourceNotFoundException
+    {
+        if (instructrepos.findById(id).isPresent())
+        {
+            instructrepos.deleteById(id);
+        }
+        else
+        {
+            throw new ResourceNotFoundException(Long.toString(id));
+        }
+    }
+
+    @Override
+    public Instructor save(Instructor instructor)
+    {
+        Instructor rtnInstr = new Instructor();
+        rtnInstr.setInstructname(instructor.getInstructname());
+        return instructrepos.save(rtnInstr);
+    }
+
+    @Override
+    public Instructor update(Instructor instructor, long id) throws ResourceNotFoundException
+    {
+        Instructor rtnInstr = instructrepos.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(Long.toString(id)));
+
+        if (instructor.getInstructname() != null)
+        {
+            rtnInstr.setInstructname(instructor.getInstructname());
+        }
+
+        return instructrepos.save(rtnInstr);
+    }
 }

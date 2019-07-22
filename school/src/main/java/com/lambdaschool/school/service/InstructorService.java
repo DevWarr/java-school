@@ -11,4 +11,10 @@ public interface InstructorService
     Instructor getInstructorById(long id);
 
     ArrayList<Instructor> getInstructorByName(String name);
+
+    void delete(long id);
+
+    Instructor save(Instructor instructor);
+
+    Instructor update(Instructor instructor, long id);
 }
