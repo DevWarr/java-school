@@ -8,7 +8,7 @@ A student that completes this project shows that they can:
 
 Starting with the java-school application
 
-[x] Get the endpoint GET /courses/studcount working
+* [x] Get the endpoint GET /courses/studcount working
 
 Add appropriate exception handling routines. Required exceptions to handle are when
   * [x] a resource is not found
