@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @Service(value = "instructorService")
 public class InstructorServiceImpl implements InstructorService
@@ -16,9 +15,9 @@ public class InstructorServiceImpl implements InstructorService
     private InstructorRepository instructrepos;
 
     @Override
-    public List<Instructor> getAllInstructors()
+    public ArrayList<Instructor> getAllInstructors()
     {
-        List<Instructor> rtnList = new ArrayList<>();
+        ArrayList<Instructor> rtnList = new ArrayList<>();
         instructrepos.findAll().iterator().forEachRemaining(rtnList::add);
         return rtnList;
     }
@@ -30,8 +29,10 @@ public class InstructorServiceImpl implements InstructorService
     }
 
     @Override
-    public Instructor getInstructorByName(String name)
+    public ArrayList<Instructor> getInstructorByName(String name) throws ResourceNotFoundException
     {
-        return null;
+        ArrayList<Instructor> rtnInstructorList = new ArrayList<>();
+        instructrepos.findInstructorsByInstructnameEquals(name).iterator().forEachRemaining(rtnInstructorList::add);
+        return rtnInstructorList;
     }
 }

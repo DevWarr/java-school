@@ -2,13 +2,13 @@ package com.lambdaschool.school.service;
 
 import com.lambdaschool.school.model.Instructor;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public interface InstructorService
 {
-    List<Instructor> getAllInstructors();
+    ArrayList<Instructor> getAllInstructors();
 
     Instructor getInstructorById(long id);
 
-    Instructor getInstructorByName(String name);
+    ArrayList<Instructor> getInstructorByName(String name);
 }

@@ -17,7 +17,7 @@ public class Instructor
     private String instructname;
 
     @OneToMany(mappedBy = "instructor")
-    @JsonIgnoreProperties("instructors")
+    @JsonIgnoreProperties("instructor")
     private List<Course> courses = new ArrayList<>();
 
     public Instructor()
