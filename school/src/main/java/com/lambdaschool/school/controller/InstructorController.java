@@ -86,7 +86,7 @@ public class InstructorController
             @ApiResponse(code = 500, message = "Unable to add student into database", response = ErrorDetail.class)
     })
     @PostMapping(value = "/new", consumes = {"application/json"})
-    public ResponseEntity<?> addNewInstructor(@ApiParam(value = "Instructor Object")
+    public ResponseEntity<?> addNewInstructor(//@ApiParam(value = "New instructor Object", required = true)
                                                   @Valid
                                                   @RequestBody Instructor instr,
                                               HttpServletRequest req)
@@ -109,7 +109,8 @@ public class InstructorController
             @ApiResponse(code = 500, message = "Error updating instructor in database", response = ErrorDetail.class)
     })
     @PutMapping(value = "/update/{id}", consumes = {"application/json"})
-    public ResponseEntity<?> updateInstructor(@RequestBody Instructor instr,
+    public ResponseEntity<?> updateInstructor(//@ApiParam(value = "Updated instructor Object", required = true)
+                                                  @RequestBody Instructor instr,
                                               @ApiParam(value = "Instructor Id", required = true)
                                                   @PathVariable long id,
                                               HttpServletRequest req)

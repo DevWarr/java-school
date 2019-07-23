@@ -121,9 +121,10 @@ public class StudentController
     @PostMapping(value = "/Student",
                  consumes = {"application/json"},
                  produces = {"application/json"})
-    public ResponseEntity<?> addNewStudent(@Valid
-                                           @RequestBody
-                                                   Student newStudent, HttpServletRequest req) throws URISyntaxException
+    public ResponseEntity<?> addNewStudent(//@ApiParam(value = "New Student Object", required = true)
+                                               @Valid
+                                               @RequestBody Student newStudent,
+                                           HttpServletRequest req) throws URISyntaxException
     {
         logger.info(req.getMethod().toUpperCase() + " \"" + req.getRequestURI() + "\" accessed.");
 
@@ -145,10 +146,10 @@ public class StudentController
             @ApiResponse(code = 500, message = "Error updating student in database", response = ErrorDetail.class)
     })
     @PutMapping(value = "/Student/{Studentid}")
-    public ResponseEntity<?> updateStudent(
-            @RequestBody Student updateStudent,
-            @ApiParam(value = "Student Id", required = true)
-                @PathVariable long Studentid, HttpServletRequest req)
+    public ResponseEntity<?> updateStudent(//@ApiParam(value = "Updated Student Object", required = true)
+                                               @RequestBody Student updateStudent,
+                                           @ApiParam(value = "Student Id", required = true)
+                                               @PathVariable long Studentid, HttpServletRequest req)
     {
         logger.info(req.getMethod().toUpperCase() + " \"" + req.getRequestURI() + "\" accessed.");
 
@@ -164,9 +165,8 @@ public class StudentController
             @ApiResponse(code = 500, message = "Error deleting student from database", response = ErrorDetail.class)
     })
     @DeleteMapping("/Student/{Studentid}")
-    public ResponseEntity<?> deleteStudentById(
-            @ApiParam(value = "Student Id", required = true)
-                @PathVariable long Studentid, HttpServletRequest req)
+    public ResponseEntity<?> deleteStudentById(@ApiParam(value = "Student Id", required = true)
+                                                   @PathVariable long Studentid, HttpServletRequest req)
     {
         logger.info(req.getMethod().toUpperCase() + " \"" + req.getRequestURI() + "\" accessed.");
 

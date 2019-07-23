@@ -91,9 +91,10 @@ public class CourseController
             @ApiResponse(code = 500, message = "Error adding course to database", response = ErrorDetail.class)
     })
     @PostMapping(value = "/new/{instr}", consumes = {"application/json"})
-    public ResponseEntity<?> addNewCourse(@RequestBody Course course,
+    public ResponseEntity<?> addNewCourse(//@ApiParam(value = "New Course Object", required = true)
+                                              @RequestBody Course course,
                                           @ApiParam(value = "Id of the instructor who is assigned to the course.", required = true, example = "1")
-                                          @PathVariable long instr,
+                                              @PathVariable long instr,
                                           HttpServletRequest req)
     {
         logger.info(req.getMethod().toUpperCase() + " \"" + req.getRequestURI() + "\" accessed.");
@@ -110,7 +111,7 @@ public class CourseController
     })
     @DeleteMapping("/courses/{courseid}")
     public ResponseEntity<?> deleteCourseById(@ApiParam(value = "Course Id", required = true, example = "3")
-                                              @PathVariable long courseid,
+                                                  @PathVariable long courseid,
                                               HttpServletRequest req)
     {
         logger.info(req.getMethod().toUpperCase() + " \"" + req.getRequestURI() + "\" accessed.");
