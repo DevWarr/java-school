@@ -113,7 +113,7 @@ public class StudentController
 
 
 
-    @ApiOperation(value = "Adds a new student to the database using the given JSON data.", notes = "location header links to the student's id URL", response = Student.class)
+    @ApiOperation(value = "Adds a new student to the database using the given JSON data.", notes = "location header links to the student's id URL", response = void.class)
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Student created", response = void.class),
             @ApiResponse(code = 500, message = "Unable to add student into database", response = ErrorDetail.class)
