@@ -15,7 +15,7 @@ public class ResourceNotFoundException extends RuntimeException
 
     public ResourceNotFoundException(String message, Throwable cause)
     {
-        // RuntimeExceptino can also take a cause, so we add a separate constructor in case we get both things
+        // RuntimeException can also take a cause, so we add a separate constructor in case we get both things
         super(message, cause);
     }
 }
