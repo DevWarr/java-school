@@ -69,6 +69,20 @@ public class CourseController
     }
 
 
+    @ApiOperation(value = "Returns course with the given Id.", response = Course.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Course Found", response = Course.class),
+            @ApiResponse(code = 404, message = "Course not found", response = ErrorDetail.class)
+    })
+    @GetMapping(value = "id/{courseid}", produces = {"application/json"})
+    public ResponseEntity<?> getCourseById(@ApiParam(value = "Id value assigned to the course.", required = true, example = "1")
+                                               @PathVariable long courseid, HttpServletRequest req)
+    {
+        logger.info(req.getMethod().toUpperCase() + " \"" + req.getRequestURI() + "\" accessed.");
+        return new ResponseEntity<>(courseService.findCourseById(courseid), HttpStatus.OK);
+    }
+
+
 
     @ApiOperation(value = "Returns each course with the number of students enrolled", responseContainer = "List")
     @ApiResponses(value = {
