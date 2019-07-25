@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 //import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @EnableWebMvc // Needed if we want to use OUR custom error messages instead of Spring's
-//@EnableJpaAuditing
+@EnableJpaAuditing
 @SpringBootApplication
 public class SchoolApplication
 {
