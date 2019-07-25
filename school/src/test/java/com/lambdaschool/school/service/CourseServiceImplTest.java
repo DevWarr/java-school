@@ -1,6 +1,7 @@
 package com.lambdaschool.school.service;
 
 import com.lambdaschool.school.SchoolApplication;
+import com.lambdaschool.school.exceptions.ResourceNotFoundException;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -31,5 +32,19 @@ public class CourseServiceImplTest
     public void findCourseById()
     {
         assertEquals(2, courseService.findCourseById(2).getCourseid());
+    }
+
+    @Test
+    public void deleteFound()
+    {
+        courseService.delete(2);
+        assertEquals(5, courseService.findAll().size());
+    }
+
+    @Test (expected = ResourceNotFoundException.class)
+    public void deleteNotFound()
+    {
+        courseService.delete(75);
+        assertEquals(5, courseService.findAll().size());
     }
 }
