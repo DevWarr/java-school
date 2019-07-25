@@ -32,27 +32,27 @@ public class CourseServiceImplTest
     }
 
     @Test
-    public void findCourseById()
+    public void AfindCourseById()
     {
         assertEquals(2, courseService.findCourseById(2).getCourseid());
     }
 
     @Test
-    public void deleteFound()
+    public void BdeleteFound()
     {
         courseService.delete(2);
         assertEquals(5, courseService.findAll().size());
     }
 
     @Test (expected = ResourceNotFoundException.class)
-    public void deleteNotFound()
+    public void CdeleteNotFound()
     {
         courseService.delete(75);
         assertEquals(5, courseService.findAll().size());
     }
 
     @Test
-    public void saveCourse()
+    public void DsaveCourse()
     {
         Course course7 = new Course("Testing");
         Course newCourse = courseService.save(course7);
