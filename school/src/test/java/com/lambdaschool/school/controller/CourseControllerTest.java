@@ -15,7 +15,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.*;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
@@ -115,7 +117,7 @@ public class CourseControllerTest
     @Test
     public void listAllCourses() throws Exception
     {
-        String apiUrl = "courses/all";
+        String apiUrl = "/courses/all";
         Mockito.when(courseService.findAll()).thenReturn((ArrayList<Course>)courseList);
 
         RequestBuilder rb = MockMvcRequestBuilders.get(apiUrl).accept(MediaType.APPLICATION_JSON);
@@ -123,15 +125,19 @@ public class CourseControllerTest
         String tr = r.getResponse().getContentAsString();
 
         ObjectMapper mapper = new ObjectMapper();
-        String er = mapper.writeValueAsString(courseList.get(2));
+        String er = mapper.writeValueAsString(courseList);
 
+        System.out.println(rb);
+        System.out.println(r);
+        System.out.println(tr);
+        System.out.println(er);
         assertEquals("Full list of courses", er, tr);
     }
 
     @Test
     public void addCourse() throws Exception
     {
-        String apiUrl = "courses/new/1";
+        String apiUrl = "/courses/new";
 
         Course c7 = new Course("Testing");
         c7.setCourseid(100);
