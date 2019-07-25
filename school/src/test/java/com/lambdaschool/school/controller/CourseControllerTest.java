@@ -126,4 +126,10 @@ public class CourseControllerTest
 
         assertEquals("Full list of courses", er, tr);
     }
+
+    @Test
+    public void addCourse()
+    {
+        String apiUrl = "courses/new/1";
+    }
 }
