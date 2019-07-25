@@ -55,7 +55,7 @@ public class CourseServiceImplTest
     public void saveCourse()
     {
         Course course7 = new Course("Testing");
-        Course newCourse = courseService.save(course7, 1);
+        Course newCourse = courseService.save(course7);
 
         assertNotNull(newCourse);
 

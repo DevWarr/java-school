@@ -138,7 +138,7 @@ public class CourseControllerTest
         ObjectMapper mapper = new ObjectMapper();
         String courseString = mapper.writeValueAsString(c7);
 
-        Mockito.when(courseService.save(any(Course.class), 1)).thenReturn(c7);
+        Mockito.when(courseService.save(any(Course.class))).thenReturn(c7);
 
         RequestBuilder rb = MockMvcRequestBuilders.post(apiUrl)
                 .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)

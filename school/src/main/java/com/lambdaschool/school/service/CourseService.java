@@ -18,5 +18,5 @@ public interface CourseService
 
     void delete(long id);
 
-    Course save(Course newCourse, long instructorId);
+    Course save(Course newCourse);
 }
