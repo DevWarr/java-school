@@ -17,6 +17,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.*;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -128,8 +129,20 @@ public class CourseControllerTest
     }
 
     @Test
-    public void addCourse()
+    public void addCourse() throws Exception
     {
         String apiUrl = "courses/new/1";
+
+        Course c7 = new Course("Testing");
+        c7.setCourseid(100);
+        ObjectMapper mapper = new ObjectMapper();
+        String courseString = mapper.writeValueAsString(c7);
+
+        Mockito.when(courseService.save(any(Course.class), 1)).thenReturn(c7);
+
+        RequestBuilder rb = MockMvcRequestBuilders.post(apiUrl)
+                .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)
+                .content(courseString);
+        mockMvc.perform(rb).andExpect(status().isCreated()).andDo(MockMvcResultHandlers.print());
     }
 }
