@@ -39,6 +39,13 @@ public class CourseServiceImpl implements CourseService
     }
 
     @Override
+    public Course findCourseById(long id)
+    {
+        return courserepos.findById(id).orElseThrow(() -> new ResourceNotFoundException(Long.toString(id)));
+    }
+
+
+    @Override
     public ArrayList<CountStudentsInCourses> getCountStudentsInCourse()
     {
         return courserepos.getCountStudentsInCourse();
@@ -46,12 +53,11 @@ public class CourseServiceImpl implements CourseService
 
     @Transactional
     @Override
-    public Course save(Course newCourse, long id) throws ResourceNotFoundException
+    public Course save(Course newCourse)
     {
-        Instructor courseInstr = instructorrepos.findById(id).orElseThrow(() -> new ResourceNotFoundException(Long.toString(id)));
         Course rtnCourse = new Course();
         rtnCourse.setCoursename(newCourse.getCoursename());
-        rtnCourse.setInstructor(courseInstr);
+        rtnCourse.setInstructor(newCourse.getInstructor());
         return courserepos.save(rtnCourse);
     }
 

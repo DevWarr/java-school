@@ -69,6 +69,20 @@ public class CourseController
     }
 
 
+    @ApiOperation(value = "Returns course with the given Id.", response = Course.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Course Found", response = Course.class),
+            @ApiResponse(code = 404, message = "Course not found", response = ErrorDetail.class)
+    })
+    @GetMapping(value = "id/{courseid}", produces = {"application/json"})
+    public ResponseEntity<?> getCourseById(@ApiParam(value = "Id value assigned to the course.", required = true, example = "1")
+                                               @PathVariable long courseid, HttpServletRequest req)
+    {
+        logger.info(req.getMethod().toUpperCase() + " \"" + req.getRequestURI() + "\" accessed.");
+        return new ResponseEntity<>(courseService.findCourseById(courseid), HttpStatus.OK);
+    }
+
+
 
     @ApiOperation(value = "Returns each course with the number of students enrolled", responseContainer = "List")
     @ApiResponses(value = {
@@ -90,15 +104,13 @@ public class CourseController
             @ApiResponse(code = 201, message = "New Course Created", response = void.class),
             @ApiResponse(code = 500, message = "Error adding course to database", response = ErrorDetail.class)
     })
-    @PostMapping(value = "/new/{instr}", consumes = {"application/json"})
+    @PostMapping(value = "/new", consumes = {"application/json"})
     public ResponseEntity<?> addNewCourse(//@ApiParam(value = "New Course Object", required = true)
                                               @RequestBody Course course,
-                                          @ApiParam(value = "Id of the instructor who is assigned to the course.", required = true, example = "1")
-                                              @PathVariable long instr,
                                           HttpServletRequest req)
     {
         logger.info(req.getMethod().toUpperCase() + " \"" + req.getRequestURI() + "\" accessed.");
-        course = courseService.save(course, instr);
+        course = courseService.save(course);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
