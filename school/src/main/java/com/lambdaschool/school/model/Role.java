@@ -16,7 +16,7 @@ public class Role extends Auditable
 
     @Column(nullable = false,
             unique = true)
-    private String rolename;
+    String roleName;
 
     @OneToMany(mappedBy = "role",
                cascade = CascadeType.ALL)
@@ -27,9 +27,9 @@ public class Role extends Auditable
     {
     }
 
-    public Role(String rolename)
+    public Role(String roleName)
     {
-        this.rolename = rolename;
+        this.roleName = roleName;
     }
 
     public long getRoleid()
@@ -42,14 +42,14 @@ public class Role extends Auditable
         this.roleid = roleid;
     }
 
-    public String getRolename()
+    public String getRoleName()
     {
-        return rolename;
+        return roleName;
     }
 
-    public void setRolename(String rolename)
+    public void setRoleName(String roleName)
     {
-        this.rolename = rolename;
+        this.roleName = roleName;
     }
 
     public List<UserRoles> getUserRoles()

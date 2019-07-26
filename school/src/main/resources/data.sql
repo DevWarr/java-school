@@ -46,21 +46,4 @@ INSERT INTO studcourses (studid, courseid)
            (3, 1),
            (3, 6);
 
-INSERT INTO users (userid, username, password)
-    VALUES (1, 'barnbarn', '1LuvM4th'),
-           (2, 'admin', 'password'),
-           (3, 'Bob', 'password'),
-           (4, 'Jane', 'password');
-
-INSERT INTO roles (roleid, rolename)
-    VALUES (1, 'admin'),
-           (2, 'user');
-
-INSERT INTO userroles (userid, roleid)
-    VALUES (1, 2),
-           (2, 1),
-           (2, 2),
-           (3, 2),
-           (4, 2);
-
 alter sequence hibernate_sequence restart with 20;
