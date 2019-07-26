@@ -14,11 +14,8 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter
 {
-    static final String CLIENT_ID = System.getenv("OAUTHCLIENTID");
-    static final String CLIENT_SECRET = System.getenv("OAUTHCLIENTSECRET");
-//    static final String CLIENT_ID = "lambda-client";
-//    static final String CLIENT_SECRET = "lambda-secret";
-
+    static final String CLIENT_ID = "lambda-client";
+    static final String CLIENT_SECRET = "lambda-secret";
     static final String GRANT_TYPE_PASSWORD = "password";
     static final String AUTHORIZATION_CODE = "authorization_code";
     static final String REFRESH_TOKEN = "refresh_token";
@@ -55,6 +52,5 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.tokenStore(tokenStore)
                 .authenticationManager(authenticationManager);
-        endpoints.pathMapping("/oauth/token", "/login");
     }
 }
