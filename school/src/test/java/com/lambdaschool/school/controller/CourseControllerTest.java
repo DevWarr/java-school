@@ -127,6 +127,10 @@ public class CourseControllerTest
         ObjectMapper mapper = new ObjectMapper();
         String er = mapper.writeValueAsString(courseList);
 
+        System.out.println(rb);
+        System.out.println(r);
+        System.out.println(tr);
+        System.out.println(er);
         assertEquals("Full list of courses", er, tr);
     }
 
