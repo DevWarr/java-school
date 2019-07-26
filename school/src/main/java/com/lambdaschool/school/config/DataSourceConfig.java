@@ -27,7 +27,7 @@ public class DataSourceConfig
         // H2 = testing
         // PostgreSQL = production
 //        String dbValue = env.getProperty("local.run.db");
-        String dbValue = "POSTGRESQL"; // Trying to get the value from application.properties cause a nullPointerException >.>
+        String dbValue = "POSTGRESQL"; // Trying to get the value from application.properties causes a nullPointerException >.>
 
         if(dbValue.equalsIgnoreCase("POSTGRESQL"))
         {
